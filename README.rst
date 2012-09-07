@@ -4,11 +4,13 @@ Elasticsearch WebSocket Client
 A Netty-based websocket client for Elasticsearch, based upon the 
 `Elasticsearch Client Project <http://jprante.github.com/elasticsearch-client>`_ framework.
 
+In order to connect to an Elasticsearch node with this client, be sure it has the `Websocket transport plugin <http://jprante.github.com/elasticsearch-transport-websocket>`_ installed.
+
 This is a prerelease and not feature-complete.
 
 Currently the client can handle five commands:
 
-index, delete, bulk (three commands for demonstration of automatic bulk), 
+index, delete, flush (three commands for demonstration of automatic bulk), 
 and publish and subscribe (for asynchronous distributed messaging in an Elasticsearch cluster).
 
 Example code:

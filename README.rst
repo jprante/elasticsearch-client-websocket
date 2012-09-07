@@ -42,7 +42,7 @@ Example code:
 
                         @Override
                         public void onMessage(WebSocketIngestClient client, WebSocketFrame frame) {
-                            logger.info("frame received: {}", frame);
+                            logger.info("subscriber received a frame: {}", frame);
                         }
                     });
             
@@ -56,15 +56,18 @@ Example code:
 
                         @Override
                         public void onMessage(WebSocketIngestClient client, WebSocketFrame frame) {
-                            logger.info("frame received: {}", frame);
+                            logger.info("publisher received a frame: {}", frame);
                         }
                     });
 
             // connect both clients to node
+			
             subscribingClient.connect().await(1000, TimeUnit.MILLISECONDS);
-            publishingClient.connect().await(1000, TimeUnit.MILLISECONDS);
+            // wait for subscribe
+            Thread.sleep(1000);
 
-            // wait for publish/subscribe actions
+            publishingClient.connect().await(1000, TimeUnit.MILLISECONDS);
+            // wait for publish
             Thread.sleep(1000);
 
             // close first client
@@ -76,13 +79,12 @@ Example code:
             subscribingClient.disconnect();
 
 
-Logfile excerpt of two clients communicating with each other by a topic with publish/subscribe:
+Logfile example of two independent clients communicating with each other by a topic with publish/subscribe:
 
 ::
 
- [20:32:17,274][INFO ][test                     ] sending subscribe command, channel = [id: 0x5833ea04, /127.0.0.1:55037 => localhost/127.0.0.1:9400]
- [20:32:17,277][INFO ][test                     ] sending publish command, channel = [id: 0x13c2a62a, /127.0.0.1:55038 => localhost/127.0.0.1:9400]
- [20:32:17,287][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"subscribe", "data" : {"ok":true,"id":"twoclienttest"}})
- [20:32:17,288][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"publish", "data" : {"id":"0TIWOTBxSHWKMpL3_dIPDQ","subscribers":1}})
- [20:32:17,292][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"message","data":{"timestamp":1347042737278,"data":{"topic":"twoclienttest","message":"SGVsbG8gV29ybGQ="}}})
- Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.77 sec
+ [21:31:40,801][INFO ][test                     ] sending subscribe command, channel = [id: 0x7588262d, /127.0.0.1:55384 => localhost/127.0.0.1:9400]
+ [21:31:40,813][INFO ][test                     ] subscriber received a frame: TextWebSocketFrame(text: {"ok":true,"type":"subscribe", "data" : {"ok":true,"id":"test"}})
+ [21:31:41,803][INFO ][test                     ] sending publish command, channel = [id: 0x7a783e0d, /127.0.0.1:55385 => localhost/127.0.0.1:9400]
+ [21:31:41,813][INFO ][test                     ] publisher received a frame: TextWebSocketFrame(text: {"ok":true,"type":"publish", "data" : {"id":"EpDeB7MsQmu5d8s_gvgvSg","subscribers":1}})
+ [21:31:41,816][INFO ][test                     ] subscriber received a frame: TextWebSocketFrame(text: {"ok":true,"type":"message","data":{"timestamp":1347046301804,"data":{"topic":"test","message":"Hello World"}}})

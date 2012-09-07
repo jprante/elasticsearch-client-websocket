@@ -38,7 +38,7 @@ public class WebSocketPublishAction extends WebSocketAction<PublishRequest,Publi
                 builder()
                 .startObject()
                 .field("topic", request.topic())
-                .field("message", request.source())
+                .field("message", request.source().toUtf8())
                 .endObject();
             responseOK(client, NAME, builder);
         } catch (IOException e) {

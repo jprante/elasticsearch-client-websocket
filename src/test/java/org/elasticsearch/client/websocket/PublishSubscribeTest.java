@@ -112,7 +112,7 @@ public class PublishSubscribeTest {
 
                         @Override
                         public void onMessage(WebSocketIngestClient client, WebSocketFrame frame) {
-                            logger.info("frame received: {}", frame);
+                            logger.info("subscriber received a frame: {}", frame);
                         }
                     });
             
@@ -126,15 +126,17 @@ public class PublishSubscribeTest {
 
                         @Override
                         public void onMessage(WebSocketIngestClient client, WebSocketFrame frame) {
-                            logger.info("frame received: {}", frame);
+                            logger.info("publisher received a frame: {}", frame);
                         }
                     });
 
             // connect both clients to node
             subscribingClient.connect().await(1000, TimeUnit.MILLISECONDS);
+            // wait for subscribe
+            Thread.sleep(1000);
+            
             publishingClient.connect().await(1000, TimeUnit.MILLISECONDS);
-
-            // wait for publish/subscribe actions
+            // wait for publish
             Thread.sleep(1000);
 
             // close first client

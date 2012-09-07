@@ -2,9 +2,9 @@ Elasticsearch WebSocket Client
 ==============================
 
 A Netty-based websocket client for Elasticsearch, based upon the 
-`Elasticsearch Client Project <http://jprante.github.com/elasticsearch-client>`_ framework.
+`Elasticsearch Client Project <http://github.com/jprante/elasticsearch-client>`_ framework.
 
-In order to connect to an Elasticsearch node with this client, be sure it has the `Websocket transport plugin <http://jprante.github.com/elasticsearch-transport-websocket>`_ installed.
+In order to connect to an Elasticsearch node with this client, be sure it has the `Websocket transport plugin <http://github.com/jprante/elasticsearch-transport-websocket>`_ installed.
 
 This is a prerelease and not feature-complete.
 

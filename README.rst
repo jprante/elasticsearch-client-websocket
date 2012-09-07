@@ -81,7 +81,8 @@ Logfile excerpt of two clients communicating with each other by a topic with pub
 ::
 
  [20:32:15,257][INFO ][test                     ] sending subscribe command, channel = [id: 0x46213544, /127.0.0.1:55036 => localhost/127.0.0.1:9400]
- [20:32:15,258][INFO ][test                     ] sending publish command (to ourselves), channel = [id: 0x46213544, /127.0.0.1:55036 => localhost/127.0.0.1:9400]  [20:32:15,274][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"subscribe", "data" : {"ok":true,"id":"oneclienttest"}})
+ [20:32:15,258][INFO ][test                     ] sending publish command (to ourselves), channel = [id: 0x46213544, /127.0.0.1:55036 => localhost/127.0.0.1:9400]  
+ [20:32:15,274][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"subscribe", "data" : {"ok":true,"id":"oneclienttest"}})
  [20:32:15,275][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"publish", "data" : {"id":"hl4jHzAzTp-mPwPghSXnWA","subscribers":1}})
  [20:32:15,282][INFO ][test                     ] frame received: TextWebSocketFrame(text: {"ok":true,"type":"message","data":{"timestamp":1347042735261,"data":{"topic":"oneclienttest","message":"SGVsbG8gV29ybGQ="}}})
  [20:32:16,258][INFO ][test                     ] frame received: CloseWebSocketFrame
